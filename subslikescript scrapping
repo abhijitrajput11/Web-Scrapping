@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup
+website="https://subslikescript.com/movies"
+response=requests.get(website)
+content=response.text
+Soup = BeautifulSoup(content,"html.parser")
+#print(Soup)
+#print(Soup.prettify())
+
+box=Soup.find("article",class_="main-article")
+loop=(box.find_all('a',href=True))
+
+root="https://subslikescript.com/"
+for i in loop:
+    #print(i["title"])a href k andr kuch b access kar sakte h
+    x=i.text.strip()
+    print(x)#movie name
+    print(root+i['href'])
+    
+# root="https://subslikescript.com/"
+# for i in loop:
+#     print(root+i['href'])#movie links
+ 
+#now txt file k lia
+
+
